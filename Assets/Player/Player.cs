@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : GenericSingleton<Player>
 {
-    public float health = 100f; 
+    float health = 100f; 
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +15,17 @@ public class Player : GenericSingleton<Player>
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(health);
+        if (health < 0)
+        {
+            Time.timeScale = 0;
+            GunController gunController = gameObject.GetComponentInChildren<GunController>();
+            gunController.canShoot = false;
+        }
+    }
+
+    public void TakeDamage()
+    {
+        health -= 15f;
     }
 }

@@ -7,8 +7,8 @@ public class GunController : MonoBehaviour
     float facingAngle = 0f;
 
     // weapon variables
-    [SerializeField] float damage;
     [SerializeField] GameObject firePoint;
+    public bool canShoot;
 
     LineRenderer lineRenderer;
 
@@ -20,14 +20,17 @@ public class GunController : MonoBehaviour
         lineRenderer.endColor = Color.red;
         lineRenderer.startWidth = .1f;
         lineRenderer.endWidth = .1f;
+
+        canShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        FacePosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        if (canShoot == true)
+            FacePosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canShoot == true)
             Shoot();
     }
 
@@ -46,7 +49,8 @@ public class GunController : MonoBehaviour
 
         if (hit.collider.CompareTag("Enemy"))
         {
-            Enemy.Instance.health -= 15;
+            Enemy hitEnemy = hit.transform.GetComponent<Enemy>();
+            hitEnemy.TakeDamage();
             Debug.Log("Hit an enemy");
         }
         Debug.Log("Did not hit an enemy");
