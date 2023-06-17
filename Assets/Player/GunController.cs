@@ -10,10 +10,16 @@ public class GunController : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] GameObject firePoint;
 
+    LineRenderer lineRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.startColor = Color.red;
+        lineRenderer.endColor = Color.red;
+        lineRenderer.startWidth = .1f;
+        lineRenderer.endWidth = .1f;
     }
 
     // Update is called once per frame
@@ -41,7 +47,13 @@ public class GunController : MonoBehaviour
         if (hit.collider.CompareTag("Enemy"))
         {
             Enemy.Instance.health -= 15;
-            print("Hit an enemy");
+            Debug.Log("Hit an enemy");
         }
+        Debug.Log("Did not hit an enemy");
+
+        // draw a line
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(0, firePoint.transform.position);
+        lineRenderer.SetPosition(1, hit.point);
     }
 }
