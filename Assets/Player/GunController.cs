@@ -30,7 +30,7 @@ public class GunController : MonoBehaviour
         if (canShoot == true)
             FacePosition(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        if (Input.GetMouseButtonDown(0) && canShoot == true)
+        if (Input.GetMouseButtonDown(0))
             Shoot();
     }
 
@@ -43,17 +43,13 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Shooting...");
         RaycastHit2D hit = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.up);
-        Debug.Log("Fired sucessfully");
 
         if (hit.collider.CompareTag("Enemy"))
         {
             Enemy hitEnemy = hit.transform.GetComponent<Enemy>();
             hitEnemy.TakeDamage();
-            Debug.Log("Hit an enemy");
         }
-        Debug.Log("Did not hit an enemy");
 
         // draw a line
         lineRenderer.enabled = true;

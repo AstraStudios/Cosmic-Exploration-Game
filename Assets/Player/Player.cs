@@ -26,6 +26,6 @@ public class Player : GenericSingleton<Player>
 
     public void TakeDamage()
     {
-        health -= 15f;
+        health -= 10f;
     }
 }
