@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] float movementSpeed = 1f;
 
-    [SerializeField] Transform player;
+    [SerializeField] GameObject player;
 
     public bool invunrable = false;
 
@@ -37,13 +37,13 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // movement
-        if ((Vector3.Distance(transform.position, player.position) >= 4f && Vector3.Distance(transform.position, player.position) <= 20f))
+        if ((Vector3.Distance(transform.position, player.transform.position) >= 4f && Vector3.Distance(transform.position, player.transform.position) <= 20f))
         {
-            Vector2 direction = (player.position - transform.position).normalized;
+            Vector2 direction = (player.transform.position - transform.position).normalized;
             transform.Translate(direction * movementSpeed * Time.deltaTime);
         }
         // attack the player
-        if (Vector3.Distance(transform.position, player.position) <= 4f)
+        if (Vector3.Distance(transform.position, player.transform.position) <= 4f)
         {
             if (!isShooting)
                 FireGun();
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         if (health < 0)
             Destroy(gameObject);
 
-        FacePlayer(player.position);
+        FacePlayer(player.transform.position);
     }
 
     void FacePlayer(Vector3 playerPos)
