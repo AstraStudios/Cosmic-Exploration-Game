@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Made for a old game jam
+// Originally made for a old game jam but was modified
 public class Enemy : MonoBehaviour
 {
     //[SerializeField] bool infinateSight = false;
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     float facingAngle = 0f;
     LineRenderer lineRenderer;
     float waitTime = 2f;
+    bool isShooting = false;
 
     void Start()
     {
@@ -44,7 +45,8 @@ public class Enemy : MonoBehaviour
         // attack the player
         if (Physics2D.OverlapCircle(transform.position,2f))
         {
-            StartCoroutine(WaitForSeconds());
+            if (!isShooting)
+                FireGun();
         }
 
         if (health < 0)
@@ -62,27 +64,36 @@ public class Enemy : MonoBehaviour
 
     void FireGun()
     {
+        StartCoroutine(ShootWithDelay());
+    }
+
+    IEnumerator ShootWithDelay()
+    {
+        isShooting = true;
+
         Debug.Log("Enemy is shooting...");
         RaycastHit2D hit = Physics2D.Raycast(firePoint.transform.position, firePoint.transform.up);
         Debug.Log("Enemy has fired");
 
-        if (hit.collider.CompareTag("Player"))
+        yield return new WaitForSeconds(waitTime);
+
+        if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             Debug.Log("Hit the player!!!");
             Player player = hit.transform.GetComponent<Player>();
             player.TakeDamage();
         }
-        Debug.Log("Did not hit the player");
-        // draw a line
+        else
+        {
+            Debug.Log("Did not hit the player");
+        }
+
+        // Draw a line
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, firePoint.transform.position);
-        lineRenderer.SetPosition(1, hit.point);
-    }
+        lineRenderer.SetPosition(1, hit.collider != null ? hit.point : firePoint.transform.position);
 
-    IEnumerator WaitForSeconds()
-    {
-        yield return new WaitForSeconds(waitTime);
-        FireGun();
+        isShooting = false;
     }
 
     // Public functions
