@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
             transform.Translate(direction * movementSpeed * Time.deltaTime);
         }
         // attack the player
-        if (Physics2D.OverlapCircle(transform.position,2f))
+        if (Vector3.Distance(transform.position, player.position) <= 8f)
         {
             if (!isShooting)
                 FireGun();
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
         // Draw a line
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, firePoint.transform.position);
-        lineRenderer.SetPosition(1, hit.collider != null ? hit.point : firePoint.transform.position);
+        lineRenderer.SetPosition(1, hit.transform.position);
 
         isShooting = false;
     }
