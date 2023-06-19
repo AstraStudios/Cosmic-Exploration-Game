@@ -2509,7 +2509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SUPER COOL SPACE SHOOTER
+  m_text: SPACE SHOOTER TESTING
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0abbeab59f6764dd0a349e9e971cacd2, type: 2}
   m_sharedMaterial: {fileID: 6511431224794876680, guid: 0abbeab59f6764dd0a349e9e971cacd2, type: 2}
@@ -3212,7 +3212,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2115229525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 892565761}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 595929645}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &2115229525
 MonoBehaviour:
   m_ObjectHideFlags: 0
