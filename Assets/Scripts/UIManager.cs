@@ -8,7 +8,11 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TMP_Text healthText;
+    [SerializeField] TMP_Text numOfKillsText;
+
     [SerializeField] Player player;
+    [SerializeField] GunController gunControll;
+
     [SerializeField] GameObject mainPanel;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject losePanel;
@@ -23,6 +27,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         healthText.text = player.health.ToString();
+        numOfKillsText.text = gunControll.numOfKills.ToString();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

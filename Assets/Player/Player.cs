@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : GenericSingleton<Player>
 {
-    public float health = 100f; 
+    public float health = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,6 @@ public class Player : GenericSingleton<Player>
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health);
         Death();
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    public int numOfKills;
+
     float facingAngle = 0f;
 
     // weapon variables
@@ -15,6 +17,8 @@ public class GunController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        numOfKills = 0;
+
         lineRenderer = gameObject.GetComponent<LineRenderer>();
         lineRenderer.startColor = Color.red;
         lineRenderer.endColor = Color.red;
@@ -49,6 +53,11 @@ public class GunController : MonoBehaviour
         {
             Enemy hitEnemy = hit.transform.GetComponent<Enemy>();
             hitEnemy.TakeDamage();
+            if (hitEnemy.dead == true)
+            {
+                numOfKills++;
+                Destroy(hitEnemy.gameObject);
+            }
         }
 
         // draw a line

@@ -11,8 +11,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] float movementSpeed = 1f;
 
     [SerializeField] Transform player;
+    [SerializeField] Player playerScript;
 
     public bool invunrable = false;
+    public bool dead = false;
 
     // Shooting variables
     [SerializeField] GameObject firePoint;
@@ -20,11 +22,12 @@ public class Enemy : MonoBehaviour
 
     float facingAngle = 0f;
     LineRenderer lineRenderer;
-    float waitTime = 2f;
+    float waitTime = 1.5f;
     bool isShooting = false;
 
     void Start()
     {
+        dead = false;
         health = 100f;
 
         lineRenderer = gameObject.GetComponent<LineRenderer>();
@@ -43,14 +46,11 @@ public class Enemy : MonoBehaviour
             transform.Translate(direction * movementSpeed * Time.deltaTime);
         }
         // attack the player
-        if (Vector3.Distance(transform.position, player.position) <= 6f)
+        if (Vector3.Distance(transform.position, player.position) <= 8f)
         {
             if (!isShooting)
                 FireGun();
         }
-
-        if (health < 0)
-            Destroy(gameObject);
 
         FacePlayer(player.position);
         Debug.Log(player.position);
@@ -100,6 +100,8 @@ public class Enemy : MonoBehaviour
     // Public functions
     public void TakeDamage()
     {
-        health -= 25;
+        health -= 50;
+        if (health <= 0)
+            dead = true;
     }
 }
