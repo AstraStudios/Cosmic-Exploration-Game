@@ -5,6 +5,7 @@ using UnityEngine;
 // Originally made for a old game jam but was modified
 public class Enemy : MonoBehaviour
 {
+    //Test
     //[SerializeField] bool infinateSight = false;
     float health = 100f;
 
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     float facingAngle = 0f;
     LineRenderer lineRenderer;
-    float waitTime = 1.5f;
+    float waitTime = 1.25f;
     bool isShooting = false;
 
     void Start()

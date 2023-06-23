@@ -26,6 +26,13 @@ public class GunController : MonoBehaviour
         lineRenderer.endWidth = .1f;
 
         canShoot = true;
+
+        if (PlayerPrefs.GetInt("FirstTime", 1) == 1)
+        {
+            PlayerPrefs.SetInt("NumOfKillsHighscore", 0);
+
+            PlayerPrefs.SetInt("FirstTime", 0);
+        }
     }
 
     // Update is called once per frame
@@ -36,6 +43,9 @@ public class GunController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
             Shoot();
+
+        if (PlayerPrefs.GetInt("NumOfKillsHighscore") < numOfKills)
+            PlayerPrefs.SetInt("NumOfKillsHighscore", numOfKills);
     }
 
     void FacePosition(Vector3 position)

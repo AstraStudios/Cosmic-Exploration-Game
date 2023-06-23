@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6536249152641977340}
-  - component: {fileID: 7202250319695294428}
+  - component: {fileID: 484587622934193931}
   - component: {fileID: 258908499709020039}
   - component: {fileID: 7457556595735311573}
   - component: {fileID: 6473555879011223412}
@@ -150,9 +150,9 @@ Transform:
   - {fileID: 6666817922876885080}
   - {fileID: 6435503758239649102}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7202250319695294428
+--- !u!58 &484587622934193931
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ce56af093054e479b9ca0e3b05c988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &8540867316662077385
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f31e6615fa74a88b1ab6edc2928409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfKills: 0
   firePoint: {fileID: 8462106303231320308}
   canShoot: 0
 --- !u!120 &5535998671287049102

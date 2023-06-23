@@ -7,12 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public int fireType;
+
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text numOfKillsText;
+    [SerializeField] TMP_Text numOfKillsHighscoreText;
 
     [SerializeField] Player player;
-    [SerializeField] GunController gunControll;
+    [SerializeField] GunController gunController;
 
+    [SerializeField] GameObject optionsPanel;
     [SerializeField] GameObject mainPanel;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject losePanel;
@@ -20,14 +24,16 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        optionsPanel.SetActive(true);
+        mainPanel.SetActive(false);
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         healthText.text = player.health.ToString();
-        numOfKillsText.text = gunControll.numOfKills.ToString();
+        numOfKillsText.text = gunController.numOfKills.ToString();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -40,6 +46,7 @@ public class UIManager : MonoBehaviour
         {
             mainPanel.SetActive(false);
             losePanel.SetActive(true);
+            numOfKillsHighscoreText.text = "Your highscore is: " + PlayerPrefs.GetInt("NumOfKillsHighscore").ToString();
         }
     }
 
@@ -58,5 +65,17 @@ public class UIManager : MonoBehaviour
     public void ReloadGame()
     {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+
+    public void CloseOptions()
+    {
+        Time.timeScale = 1;
+        optionsPanel.SetActive(false);
+        mainPanel.SetActive(true);
+    }
+
+    public void SwitchFireType()
+    {
+
     }
 }
